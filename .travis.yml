@@ -1,0 +1,14 @@
+sudo: required
+
+addons:
+  apt:
+    packages:
+    - ghostscript
+    - make
+    - latex-xcolor
+    - pgf
+    - texlive-latex-extra
+    - texlive-latex-recommended
+
+script:
+  - ./pdf_svg_jpg
