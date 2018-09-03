@@ -2,5 +2,3 @@ Systemd Cheatsheet
 ==================
 
 Systemd Cheatsheet
-
-
