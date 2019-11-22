@@ -1,3 +1,1 @@
-*.aux
-*.log
-*.out
+makefile4latex/.gitignore

@@ -1,0 +1,21 @@
+name: "build"
+
+on: [push, pull_request]
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-18.04
+    env:
+      DEBIAN_FRONTEND: noninteractive
+
+    steps:
+    - uses: actions/checkout@v1.1.0
+      with:
+        submodules: recursive
+
+    - name: Install necessary packages
+      run: |
+        sudo apt install -y make poppler-utils texlive texlive-latex-extra
+
+    - name: Create the documents
+      run: ./run.sh

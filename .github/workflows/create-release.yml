@@ -1,0 +1,79 @@
+name: "release"
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-18.04
+    env:
+      DEBIAN_FRONTEND: noninteractive
+
+    steps:
+    - uses: actions/checkout@v1.1.0
+      with:
+        submodules: recursive
+
+    - name: Install necessary packages
+      run: |
+        sudo apt install -y make poppler-utils texlive texlive-latex-extra
+
+    - name: Create the documents
+      run: ./run.sh
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset - pdf
+      id: upload-release-asset-pdf
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: systemd_cheatsheet.pdf
+        asset_name: systemd_cheatsheet.pdf
+        asset_content_type: application/pdf
+
+    - name: Upload Release Asset - svg
+      id: upload-release-asset-svg
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: systemd_cheatsheet.svg
+        asset_name: systemd_cheatsheet.svg
+        asset_content_type: image/svg+xml
+
+    - name: Upload Release Asset - png
+      id: upload-release-asset-png
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: systemd_cheatsheet.png
+        asset_name: systemd_cheatsheet.png
+        asset_content_type: image/png
+
+    - name: Upload Release Asset - jpg
+      id: upload-release-asset-jpg
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: systemd_cheatsheet.jpg
+        asset_name: systemd_cheatsheet.jpg
+        asset_content_type: image/jpg

@@ -1,6 +1,6 @@
 Systemd Cheatsheet
 ==================
 
-[![Build Status](https://travis-ci.com/ruzickap/cheatsheet-systemd.svg?branch=master)](https://travis-ci.com/ruzickap/cheatsheet-systemd)
+[![Build Status](https://github.com/ruzickap/cheatsheet-systemd/workflows/build/badge.svg)](https://github.com/ruzickap/cheatsheet-systemd)
 
 Systemd Cheatsheet
