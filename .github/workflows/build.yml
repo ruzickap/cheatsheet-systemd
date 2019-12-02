@@ -1,4 +1,4 @@
-name: "build"
+name: build
 
 on: [push, pull_request]
 
@@ -13,9 +13,11 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Update repositories
+      run: sudo apt update
+
     - name: Install necessary packages
-      run: |
-        sudo apt install -y make poppler-utils texlive texlive-latex-extra
+      run: sudo apt install -y make poppler-utils texlive texlive-latex-extra
 
     - name: Create the documents
       run: ./run.sh
