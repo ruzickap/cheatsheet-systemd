@@ -1,15 +1,12 @@
 name: release
 
 on:
-  push:
-    tags:
-      - 'v*'
+  release:
+    types: [published]
 
 jobs:
   build_latex:
-    runs-on: ubuntu-18.04
-    env:
-      DEBIAN_FRONTEND: noninteractive
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -25,24 +22,13 @@ jobs:
       - name: Create the documents
         run: ./run.sh
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-
       - name: Upload Release Asset - pdf
         id: upload-release-asset-pdf
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: systemd_cheatsheet.pdf
           asset_name: systemd_cheatsheet.pdf
           asset_content_type: application/pdf
@@ -53,7 +39,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: systemd_cheatsheet.svg
           asset_name: systemd_cheatsheet.svg
           asset_content_type: image/svg+xml
@@ -64,7 +50,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: systemd_cheatsheet.png
           asset_name: systemd_cheatsheet.png
           asset_content_type: image/png
@@ -75,7 +61,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: systemd_cheatsheet.jpg
           asset_name: systemd_cheatsheet.jpg
           asset_content_type: image/jpg
