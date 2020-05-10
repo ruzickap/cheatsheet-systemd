@@ -4,9 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build_latex:
-    runs-on: ubuntu-18.04
-    env:
-      DEBIAN_FRONTEND: noninteractive
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
