@@ -1,11 +1,21 @@
 # Changelog
 
+## [v1.0.1](https://github.com/ruzickap/cheatsheet-systemd/compare/v1.0.0...v1.0.1) (2021-12-03)
+
+- Move from master to main [`#39`](https://github.com/ruzickap/cheatsheet-systemd/pull/39)
+- Use super-linter:slim [`#37`](https://github.com/ruzickap/cheatsheet-systemd/pull/37)
+- Replace upload-release-asset by action-gh-release [`#33`](https://github.com/ruzickap/cheatsheet-systemd/pull/33)
+- Fix build to run GH Action properly [`#13`](https://github.com/ruzickap/cheatsheet-systemd/pull/13)
+- Add GITHUB_TOKEN to super-linter [`#9`](https://github.com/ruzickap/cheatsheet-systemd/pull/9)
+- Add super-linter + fix related issues [`#7`](https://github.com/ruzickap/cheatsheet-systemd/pull/7)
+- Move to GitHub's Dependabot [`#4`](https://github.com/ruzickap/cheatsheet-systemd/pull/4)
+- Add LICENSE [`#3`](https://github.com/ruzickap/cheatsheet-systemd/pull/3)
+
 ## v1.0.0 (2020-05-10)
 
 - Fix releasing using GH Action [`0f870eb`](https://github.com/ruzickap/cheatsheet-systemd/commit/0f870eb6d40cf17e5e05de523d0525c6e38289e0)
 - Use .gitignore as file (not link) [`3189d91`](https://github.com/ruzickap/cheatsheet-systemd/commit/3189d916876661ef453883a151dc6d80e34d0780)
 - Update ubuntu from ubuntu-18.04 -&gt; ubuntu-latest [`7100b45`](https://github.com/ruzickap/cheatsheet-systemd/commit/7100b455c978c9efed836e48b9878ca8fd33e2cd)
-- Improve dependabot by adding default_labels "dependencies" [`18acde1`](https://github.com/ruzickap/cheatsheet-systemd/commit/18acde19795b20b96915cdb87aeef0b44ca143c7)
 - Use submodules=true parameter for actions/checkout [`5f17b27`](https://github.com/ruzickap/cheatsheet-systemd/commit/5f17b276ac8ee3fd6795ab9cdacb2c7925bf0bb2)
 - Use major (v1, v2, v3, etc) version numbers for ease of referencing [`169de76`](https://github.com/ruzickap/cheatsheet-systemd/commit/169de76a66aa9766216b21c6a379ce67948515f7)
 - Upgrading actions/checkout from v1 to v2 [`194acf6`](https://github.com/ruzickap/cheatsheet-systemd/commit/194acf67a52a2582071cd35c4d1b23d555b1c3ce)
