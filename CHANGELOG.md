@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.0](https://github.com/ruzickap/cheatsheet-systemd/compare/v1.0.1...v1.1.0) (2024-03-24)
+
+
+### Features
+
+* **gh:** add default GitHub repo files ([#50](https://github.com/ruzickap/cheatsheet-systemd/issues/50)) ([cb5fd25](https://github.com/ruzickap/cheatsheet-systemd/commit/cb5fd256f7bd64f7251883521b3d5639b8ffdd82))
+* **gh:** add default GitHub repo files ([#51](https://github.com/ruzickap/cheatsheet-systemd/issues/51)) ([be6bca1](https://github.com/ruzickap/cheatsheet-systemd/commit/be6bca105b13b9933df55f8452baebd9a355426d))
+* **gha:** unify GHA - renovate, megalinter, markdown, and others ([#48](https://github.com/ruzickap/cheatsheet-systemd/issues/48)) ([4b3343e](https://github.com/ruzickap/cheatsheet-systemd/commit/4b3343e475297c99a7dc6b49079e43dd19bf0a5b))
+
 ## [v1.0.1](https://github.com/ruzickap/cheatsheet-systemd/compare/v1.0.0...v1.0.1) (2021-12-03)
 
 - Move from master to main [`#39`](https://github.com/ruzickap/cheatsheet-systemd/pull/39)
