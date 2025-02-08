@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/ruzickap/cheatsheet-systemd/compare/v1.0.1...v1.1.0) (2025-02-08)
+
+
+### Features
+
+* add devcontainer + gha updates ([#61](https://github.com/ruzickap/cheatsheet-systemd/issues/61)) ([49d9957](https://github.com/ruzickap/cheatsheet-systemd/commit/49d9957cea17db3a20d49bcd0ec6b8af5a2e4c16))
+* add GitHub default templates ([#56](https://github.com/ruzickap/cheatsheet-systemd/issues/56)) ([d2bc51d](https://github.com/ruzickap/cheatsheet-systemd/commit/d2bc51d86c7e501c801d964f8139402f38c84387))
+* **gh:** add default GitHub repo files ([#50](https://github.com/ruzickap/cheatsheet-systemd/issues/50)) ([cb5fd25](https://github.com/ruzickap/cheatsheet-systemd/commit/cb5fd256f7bd64f7251883521b3d5639b8ffdd82))
+* **gh:** add default GitHub repo files ([#51](https://github.com/ruzickap/cheatsheet-systemd/issues/51)) ([be6bca1](https://github.com/ruzickap/cheatsheet-systemd/commit/be6bca105b13b9933df55f8452baebd9a355426d))
+* **gh:** add default github repo files ([#59](https://github.com/ruzickap/cheatsheet-systemd/issues/59)) ([e8dbc6b](https://github.com/ruzickap/cheatsheet-systemd/commit/e8dbc6ba7631fc79edabd969c86f50cf1fd12f32))
+* **gha:** unify GHA - renovate, megalinter, markdown, and others ([#48](https://github.com/ruzickap/cheatsheet-systemd/issues/48)) ([4b3343e](https://github.com/ruzickap/cheatsheet-systemd/commit/4b3343e475297c99a7dc6b49079e43dd19bf0a5b))
+
 ## [v1.0.1](https://github.com/ruzickap/cheatsheet-systemd/compare/v1.0.0...v1.0.1) (2021-12-03)
 
 - Move from master to main [`#39`](https://github.com/ruzickap/cheatsheet-systemd/pull/39)
