@@ -6,10 +6,10 @@
 This repository hosts a comprehensive cheatsheet for `systemd`, the init system
 and service manager for Linux operating systems. The cheatsheet is generated
 from the `systemd_cheatsheet.tex` LaTeX file and serves as a quick reference
-guide, ideally used in its PDF form
+guide, ideally used in its PDF form.
 
 It provides a valuable resource for users transitioning to `systemd` or those
-needing a quick lookup for various commands
+needing a quick lookup for various commands.
 
 Key areas covered in the cheatsheet include:
 * A comparison of `systemd` commands with their traditional SysVinit counterparts
