@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/ruzickap/cheatsheet-systemd/compare/v1.1.0...v1.2.0) (2025-05-27)
+
+
+### Features
+
+* **gh:** add default github repo files ([#64](https://github.com/ruzickap/cheatsheet-systemd/issues/64)) ([d19f38a](https://github.com/ruzickap/cheatsheet-systemd/commit/d19f38ace54c92004c3b3c03f3680bc6a642b4e3))
+
 ## [1.1.0](https://github.com/ruzickap/cheatsheet-systemd/compare/v1.0.1...v1.1.0) (2025-02-08)
 
 
