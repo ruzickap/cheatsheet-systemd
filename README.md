@@ -18,4 +18,3 @@ Key areas covered in the cheatsheet include:
 * A collection of useful commands for managing systemd services, units, and targets
 * Information on viewing and managing logs using `journalctl`
 * Equivalent `systemd` commands for common power management operations
-
