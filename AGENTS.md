@@ -20,13 +20,13 @@ Make (makefile4latex) and Docker with TeXLive Full.
 ./run.sh --verbose pdf
 
 # Direct Make targets (requires local TeXLive + poppler-utils)
-make pdf              # Build PDF
-make jpg png svg      # Build image formats
-make mostlyclean      # Clean temporary files, keep outputs
-make clean            # Clean everything including outputs
-make lint             # Run ChkTeX LaTeX linter
-make pretty           # Format LaTeX with latexindent
-make help             # Show all available targets
+make pdf         # Build PDF
+make jpg png svg # Build image formats
+make mostlyclean # Clean temporary files, keep outputs
+make clean       # Clean everything including outputs
+make lint        # Run ChkTeX LaTeX linter
+make pretty      # Format LaTeX with latexindent
+make help        # Show all available targets
 ```
 
 ## Lint and Validation Commands
@@ -40,7 +40,7 @@ shellcheck run.sh
 shfmt --case-indent --indent 2 --space-redirects --diff run.sh
 
 # Markdown linting
-rumdl *.md
+rumdl ./*.md
 
 # Link checking
 lychee --config lychee.toml .
