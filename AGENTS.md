@@ -63,8 +63,9 @@ linting and successful LaTeX compilation.
 ### General
 
 - **Indentation**: 2 spaces everywhere (no tabs)
-- **Line length**: Wrap at 72 characters for Markdown and commit
-  messages; no strict limit for LaTeX or shell scripts
+- **Line length**: Wrap at 80 characters for Markdown; wrap at
+  72 characters for commit messages; no strict limit for LaTeX
+  or shell scripts
 - **Final newline**: All files must end with a newline
 - **Trailing whitespace**: Trim trailing whitespace
 
@@ -90,7 +91,7 @@ linting and successful LaTeX compilation.
 ### Markdown (`.md`)
 
 - Must pass `rumdl` checks (config in `.rumdl.toml`)
-- Wrap lines at 72 characters
+- Wrap lines at 80 characters
 - Use proper heading hierarchy (no skipped levels)
 - Include language identifiers in code fences
 - Shell code blocks are extracted and validated with `shellcheck`
