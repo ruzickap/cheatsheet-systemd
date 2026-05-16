@@ -119,7 +119,6 @@ CI runs these security scanners:
 
 - **Checkov**: IaC scanner (skip `CKV_GHA_7`)
 - **DevSkim**: Pattern scanner (ignore DS162092, DS137138)
-- **KICS**: Fails only on HIGH severity
 - **Trivy**: HIGH/CRITICAL only, ignores unfixed vulnerabilities
 - **CodeQL**: Runs on pushes to main and weekly
 - **OSSF Scorecard**: Runs on pushes to main and weekly
