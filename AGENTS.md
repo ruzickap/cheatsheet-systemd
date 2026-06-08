@@ -1,167 +1,45 @@
-# AI Agent Guidelines
+# AGENTS.md
 
-## Project Overview
+Single-document LaTeX project: `systemd_cheatsheet.tex` compiles to a PDF
+cheatsheet for `systemd`. There is no application code.
 
-This is a **LaTeX document project** (`cheatsheet-systemd`) that produces
-a systemd command reference cheatsheet as PDF, JPG, PNG, and SVG. The
-primary source is `systemd_cheatsheet.tex`. The build system uses GNU
-Make (makefile4latex) and Docker with TeXLive Full.
+General contribution standards (commit messages, branching, linting, security
+scanning) live in the user-global `~/.config/opencode/AGENTS.md`, which is
+already loaded. This file only records repo-specific facts.
 
-## Build Commands
+## Build
 
-```bash
-# Full build via Docker (PDF + JPG + PNG + SVG)
-./run.sh
+- Build via Docker, not a local TeX install: `./run.sh` runs `make` inside
+  `ghcr.io/xu-cheng/texlive-full`. Default targets: `jpg pdf png svg mostlyclean`.
+- `./run.sh pdf` builds only the PDF; `./run.sh -h` shows options. Override the
+  image/targets with `LATEX_DOCKER_IMAGE` / `LATEX_MAKE_TARGETS`.
+- The image is amd64-only (no arm64); on Apple Silicon Docker runs it emulated.
+- Bare `make` / `make lint` / `make pretty` only work if a full TeX toolchain
+  (`pdflatex`, `chktex`, `latexindent`) is on `PATH` — otherwise use Docker or
+  the devcontainer.
 
-# Build only PDF via Docker
-./run.sh pdf
+## Do not edit (vendored upstream)
 
-# Verbose Docker build
-./run.sh --verbose pdf
+- `Makefile` (makefile4latex by Takahiro Ueda) and `.gitignore` are vendored and
+  carry `latest-raw-url` / `make upgrade` tags. Do not hand-edit them; they are
+  meant to be regenerated from upstream.
 
-# Direct Make targets (requires local TeXLive + poppler-utils)
-make pdf         # Build PDF
-make jpg png svg # Build image formats
-make mostlyclean # Clean temporary files, keep outputs
-make clean       # Clean everything including outputs
-make lint        # Run ChkTeX LaTeX linter
-make pretty      # Format LaTeX with latexindent
-make help        # Show all available targets
-```
+## Editing the cheatsheet
 
-## Lint and Validation Commands
+- All content is in `systemd_cheatsheet.tex` (`tabularx` tables aligned with
+  spaces). Run `make lint` (chktex) and `make pretty` (latexindent) through
+  Docker/devcontainer before committing.
+- `.chktexrc` disables warnings 1, 8, 12, 44 — keep using `\tt`/`\newline` style
+  already in the file rather than "fixing" what chktex is told to ignore.
 
-```bash
-# LaTeX linting
-chktex systemd_cheatsheet.tex
+## CI gotchas
 
-# Shell script linting and formatting
-shellcheck run.sh
-shfmt --case-indent --indent 2 --space-redirects --diff run.sh
-
-# Markdown linting
-rumdl ./*.md
-
-# Link checking
-lychee --config lychee.toml .
-
-# JSON linting (supports comments)
-jsonlint --comments .github/renovate.json5
-
-# GitHub Actions workflow validation
-actionlint
-
-# Full CI linting (runs all linters via MegaLinter)
-# This runs in CI only; see .mega-linter.yml for configuration
-```
-
-There are **no tests** in this project. Validation is done through
-linting and successful LaTeX compilation.
-
-## Code Style Guidelines
-
-### General
-
-- **Indentation**: 2 spaces everywhere (no tabs)
-- **Line length**: Wrap at 80 characters for Markdown; wrap at
-  72 characters for commit messages; no strict limit for LaTeX
-  or shell scripts
-- **Final newline**: All files must end with a newline
-- **Trailing whitespace**: Trim trailing whitespace
-
-### LaTeX (`.tex`)
-
-- Lint with `chktex` (config in `.chktexrc`)
-- Format with `latexindent` via `make pretty`
-- Disabled ChkTeX warnings: n1 (command terminated with space),
-  n8 (dash length), n12 (interword spacing), n44 (booktabs)
-- Keep document structure simple; use standard packages
-
-### Shell Scripts (`.sh`)
-
-- Start with `#!/usr/bin/env bash` and `set -euo pipefail`
-- **Variables**: UPPERCASE with braces (`${MY_VARIABLE}`)
-- **Formatting**: `shfmt --case-indent --indent 2 --space-redirects`
-- **Linting**: `shellcheck` (SC2317 excluded globally)
-- Quote all variable expansions: `"${VARIABLE}"`
-- Redirect errors to stderr: `>&2`
-- Use `command -v` to check command existence
-- Use `cat << EOF` heredocs for multi-line output
-
-### Markdown (`.md`)
-
-- Must pass `rumdl` checks (config in `.rumdl.toml`)
-- Wrap lines at 80 characters
-- Use proper heading hierarchy (no skipped levels)
-- Include language identifiers in code fences
-- Shell code blocks are extracted and validated with `shellcheck`
-  and `shfmt` during CI
-- `CHANGELOG.md` is auto-generated; do not edit manually
-
-### JSON / YAML
-
-- JSON: must pass `jsonlint --comments`
-- YAML: use `---` document separator at top of files
-- Both: 2-space indentation
-
-### GitHub Actions Workflows
-
-- Validate with `actionlint` after any modification
-- **Pin all actions to full SHA commits**, never tags
-- Set `permissions: read-all` as default; override minimally
-- Always set `timeout-minutes` on jobs (5 or 10)
-- All workflows must support `workflow_dispatch`
-- Add a descriptive comment at the top of each workflow file
-
-## Security Scanning
-
-CI runs these security scanners:
-
-- **Checkov**: IaC scanner (skip `CKV_GHA_7`)
-- **DevSkim**: Pattern scanner (ignore DS162092, DS137138)
-- **Trivy**: HIGH/CRITICAL only, ignores unfixed vulnerabilities
-- **CodeQL**: Runs on pushes to main and weekly
-- **OSSF Scorecard**: Runs on pushes to main and weekly
-
-## Version Control
-
-### Commit Messages
-
-Use **conventional commit** format with these rules:
-
-- Types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`,
-  `style`, `perf`, `ci`, `build`, `revert`
-- Format: `<type>: <description>` (imperative mood, lowercase)
-- Subject line: maximum 72 characters, no trailing period
-- Body: wrap at 72 characters, explain what and why
-- Reference issues: `Fixes #123`, `Closes #123`, `Resolves #123`
-
-```text
-feat: add automated dependency updates
-
-- Implement Dependabot configuration
-- Configure weekly security updates
-
-Resolves: #123
-```
-
-### Branching
-
-Follow [Conventional Branch](https://conventional-branch.github.io/)
-format: `<type>/<description>`
-
-- `feature/` or `feat/`: new features
-- `bugfix/` or `fix/`: bug fixes
-- `hotfix/`: urgent fixes
-- `release/`: release prep (e.g., `release/v1.2.0`)
-- `chore/`: non-code tasks
-
-Use lowercase, hyphens, no consecutive/leading/trailing hyphens.
-Include issue numbers when applicable: `feature/issue-123-description`
-
-### Pull Requests
-
-- Always create as **draft** initially
-- Title must follow conventional commit format
-- Include clear description of changes and motivation
-- Link related issues with `Fixes`, `Closes`, or `Resolves`
+- CI quality is one job: **MegaLinter** (`.mega-linter.yml`), not the individual
+  tools run directly. It runs on every push except `main`.
+- Markdown is checked with `rumdl` + `lychee` (markdownlint/markdown-link-check
+  are disabled). Bash/shell/sh code blocks inside Markdown are extracted to
+  `bash_commands_from_md.sh` and shellcheck'd — keep fenced shell snippets valid.
+- `latex-build` workflow only runs on `**.tex` changes and never on `main`.
+- Releases are automated by release-please (`release-type: simple`) on `main`;
+  it builds the PDF and attaches it to the GitHub release. Bump versions via
+  conventional commits, not manual edits.
