@@ -4,8 +4,7 @@
 \usepackage{tabularx}
 \usepackage[margin=0.75cm]{geometry}
 \usepackage[
-             bookmarks,
-             pdfpagemode=None,
+             pdfpagemode=UseNone,
              pdftitle={Systemd Cheatsheet},
              pdfauthor={PetrR},
              pdfsubject={Systemd Cheatsheet},
@@ -25,7 +24,8 @@
 \vspace{7mm}
 \small
 
-\begin{tabularx}{\textwidth}{ |l|X|X| }
+% Command column gets 5% of the notes width so the longest command fits
+\begin{tabularx}{\textwidth}{ |l|>{\hsize=1.05\hsize}X|>{\hsize=.95\hsize}X| }
 \hline
 \rowcolor[gray]{.8}
 \bfseries Sysvinit Command    & \bfseries Systemd Command                                                             & \bfseries Notes \\\hline
