@@ -1,6 +1,6 @@
 # Systemd Cheatsheet
 
-[![Build Status](https://github.com/ruzickap/cheatsheet-systemd/actions/workflows/latex-build.yml/badge.svg)](https://github.com/ruzickap/cheatsheet-systemd/actions/workflows/latex-build.yml)
+[![Build Status](https://github.com/ruzickap/cheatsheet-systemd/actions/workflows/release-please.yml/badge.svg)](https://github.com/ruzickap/cheatsheet-systemd/actions/workflows/release-please.yml)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ruzickap/cheatsheet-systemd)
 
 This repository hosts a comprehensive cheatsheet for `systemd`, the init system
