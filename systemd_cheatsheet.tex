@@ -4,8 +4,7 @@
 \usepackage{tabularx}
 \usepackage[margin=0.75cm]{geometry}
 \usepackage[
-             bookmarks,
-             pdfpagemode=None,
+             pdfpagemode=UseNone,
              pdftitle={Systemd Cheatsheet},
              pdfauthor={PetrR},
              pdfsubject={Systemd Cheatsheet},
@@ -25,7 +24,8 @@
 \vspace{7mm}
 \small
 
-\begin{tabularx}{\textwidth}{ |l|X|X| }
+% Command column gets 5% of the notes width so the longest command fits
+\begin{tabularx}{\textwidth}{ |l|>{\hsize=1.05\hsize}X|>{\hsize=.95\hsize}X| }
 \hline
 \rowcolor[gray]{.8}
 \bfseries Sysvinit Command    & \bfseries Systemd Command                                                             & \bfseries Notes \\\hline
@@ -70,7 +70,7 @@ emergency                   & emergency.target                                  
 \tt systemctl set-default multi-user.target             & Change default boot target to multi-user.target \\\hline
 \tt journalctl -b                                       & Show all messages from this boot \\\hline
 \tt journalctl -b -p err                                & Show all messages of priority levels ERROR (3) and worse, from the current boot \\\hline
-\tt journalctl -p warning --since='2014-06-14 23:59:59' & View the warning or higher priority messages from certain point in time \\\hline
+\tt journalctl -p warning --since=2014-06-14            & View the warning or higher priority messages from certain point in time \\\hline
 \tt journalctl -f                                       & Follow new messages \\\hline
 \tt journalctl -u SERVICE                               & Show only log of SERVICE \\\hline
 \tt journalctl /usr/sbin/httpd                          & Show all messages by a specific executable \\\hline
