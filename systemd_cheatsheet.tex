@@ -2,8 +2,9 @@
 
 \usepackage[table]{xcolor}
 \usepackage{tabularx}
+\usepackage[margin=0.75cm]{geometry}
 \usepackage[
-	     citecolor=red,backref,bookmarks,
+             bookmarks,
              pdfpagemode=None,
              pdftitle={Systemd Cheatsheet},
              pdfauthor={PetrR},
@@ -12,14 +13,7 @@
              pdfview=FitB
 ]{hyperref}
 
-\title{Systemd Cheatsheet}
-
 \pagestyle{empty}
-
-\addtolength{\voffset}{-3.5cm}
-\addtolength{\textheight}{7cm}
-\addtolength{\hoffset}{-3.7cm}
-\addtolength{\textwidth}{7.4cm}
 
 % -----------------------------------------------------------------------
 
@@ -39,10 +33,10 @@
 \tt service httpd stop        & \tt systemctl stop httpd.service                                                      & Used to stop a service (not reboot persistent) \\\hline
 \tt service httpd restart     & \tt systemctl restart httpd.service                                                   & Used to stop and then start a service \\\hline
 \tt service httpd reload      & \tt systemctl reload httpd.service                                                    & When supported, reloads the config file without interrupting pending operations \\\hline
-\tt service httpd condrestart & \tt systemctl condrestart httpd.service                                               & Restarts if the service is already running \\\hline
+\tt service httpd condrestart & \tt systemctl try-restart httpd.service                                               & Restarts if the service is already running \\\hline
 \tt service httpd status      & \tt systemctl status httpd.service                                                    & Tells whether a service is currently running \\\hline
 \tt service --status-all      & \tt systemctl list-units --type service                                               & Displays the status of all services \\\hline
-\tt ls /etc/rc.d/init.d/      & \tt systemctl list-unit-files --type=service                                          & Used to list the services that can be started or stopped; Used to list all the services and other units \\\hline
+\tt ls /etc/rc.d/init.d/      & \tt systemctl list-unit-files --type=service                                          & Used to list the services that can be started or stopped \\\hline
 \tt chkconfig httpd on        & \tt systemctl enable httpd.service                                                    & Turn the service on, for start at next boot, or other trigger \\\hline
 \tt chkconfig httpd off       & \tt systemctl disable httpd.service                                                   & Turn the service off for the next reboot, or any other trigger \\\hline
 \tt chkconfig httpd           & \tt systemctl is-enabled httpd.service                                                & Used to check whether a service is configured to start or not in the current environment \\\hline
@@ -75,13 +69,11 @@ emergency                   & emergency.target                                  
 \tt systemctl get-default                               & Determine which target unit is used by default \\\hline
 \tt systemctl set-default multi-user.target             & Change default boot target to multi-user.target \\\hline
 \tt journalctl -b                                       & Show all messages from this boot \\\hline
-\tt journalctl -b -p err                                & Show all messages of priority levels ERROR (4) and worse, from the current boot \\\hline
+\tt journalctl -b -p err                                & Show all messages of priority levels ERROR (3) and worse, from the current boot \\\hline
 \tt journalctl -p warning --since='2014-06-14 23:59:59' & View the warning or higher priority messages from certain point in time \\\hline
 \tt journalctl -f                                       & Follow new messages \\\hline
 \tt journalctl -u SERVICE                               & Show only log of SERVICE \\\hline
 \tt journalctl /usr/sbin/httpd                          & Show all messages by a specific executable \\\hline
-\tt journalctl --full                                   & Display full (= not truncated) messages \\\hline
-\tt systemctl --state=failed                            & Lets find the systemd services which fail to start \\\hline
 \tt systemctl list-units --type=target                  & Show current runlevel \\\hline
 \tt systemctl isolate graphical.target                  & Changes the current target (runlevel) \\\hline
 \tt systemctl rescue/emergency                          & Changing to Rescue (single user mode)/Emergency Mode \\\hline
@@ -89,8 +81,8 @@ emergency                   & emergency.target                                  
 \tt systemctl --failed                                  & List failed services on boot \\\hline
 \tt systemd-cgls                                        & cgroup tree \\\hline
 \tt systemctl show -p Wants multi-user.target           & What other units does a unit depend on? \\\hline
-\tt systemctl list-jobs                                 & Check for possibly stuck jobs use \\\hline
-\tt systemctl list-dependencies                         & Show units and it's dependencies \\\hline
+\tt systemctl list-jobs                                 & Check for possibly stuck jobs \\\hline
+\tt systemctl list-dependencies                         & Show units and their dependencies \\\hline
 \end{tabularx}
 
 \vspace{6mm}
@@ -106,13 +98,6 @@ emergency                   & emergency.target                                  
 \tt pm-hibernate      & \tt systemctl hibernate    & Hibernates the system \\\hline
 \tt pm-suspend-hybrid & \tt systemctl hybrid-sleep & Hibernates and suspends the system \\\hline
 \end{tabularx}
-
-
-% Footer
-%\vfill \hrule\smallskip
-%{\tiny
-%This card may be freely distributed under the terms of the GNU general public license
-%}
 
 \end{center}
 \end{document}
