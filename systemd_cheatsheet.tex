@@ -70,7 +70,7 @@ emergency                   & emergency.target                                  
 \tt systemctl set-default multi-user.target             & Change default boot target to multi-user.target \\\hline
 \tt journalctl -b                                       & Show all messages from this boot \\\hline
 \tt journalctl -b -p err                                & Show all messages of priority levels ERROR (3) and worse, from the current boot \\\hline
-\tt journalctl -p warning --since='2014-06-14 23:59:59' & View the warning or higher priority messages from certain point in time \\\hline
+\tt journalctl -p warning --since=2014-06-14            & View the warning or higher priority messages from certain point in time \\\hline
 \tt journalctl -f                                       & Follow new messages \\\hline
 \tt journalctl -u SERVICE                               & Show only log of SERVICE \\\hline
 \tt journalctl /usr/sbin/httpd                          & Show all messages by a specific executable \\\hline
